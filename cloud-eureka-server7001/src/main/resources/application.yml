@@ -1,0 +1,21 @@
+server:
+  port: 7001
+
+eureka:
+  instance:
+    hostname: eureka7001.com #eureka服务的实例名称
+  client:
+    #false表示不向注册中心注册自己
+    register-with-eureka: false
+    #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要检索服务
+    fetch-registry: false
+    #设置eureka的server交互地址查询服务和注册服务都需要依赖这个地址
+    service-url:   #该名称写错集群DS Replicas会一直显示localhost
+      #集群
+        defaultZone: http://eureka7002.com:7002/eureka/
+  server:
+    #禁用自我保护机制
+    enable-self-preservation: false
+    #2秒钟禁用自我保护机制
+    eviction-interval-timer-in-ms: 2000
+#defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
